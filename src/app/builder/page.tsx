@@ -17,7 +17,6 @@ import {
     Legend,
 } from "recharts";
 import { Button } from "@/components/ui/button";
-import html2canvas from "html2canvas";
 
 const initialData = [
     { name: "Chartz", value: 100, color: "#910991" },
@@ -34,6 +33,7 @@ export default function ChartBuilder() {
     const handleDownload = async () => {
         const chartNode = document.getElementById("chart-preview");
         if (!chartNode) return;
+        const { default: html2canvas } = await import("html2canvas");
         const canvas = await html2canvas(chartNode);
         const link = document.createElement("a");
         link.download = "chart.png";
